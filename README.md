@@ -57,6 +57,12 @@ Copy `skills/finding-unknowns/` into your agent's skills directory:
 
 The skill activates itself on any non-trivial task — ambiguous requirements, unfamiliar domain or codebase, client-facing deliverables, changes spanning multiple files — before plans or code are written, and again when mid-implementation edge cases force deviation, and before handoff or merge. No slash command needed.
 
+**Force it on demand** — Claude Code users also get an `/unknowns` command (bundled with the plugin install; manual installs copy `commands/unknowns.md` to `~/.claude/commands/`). It force-runs the full workflow, printed inventory included, even on tasks the skill would normally scale down for:
+
+```
+/unknowns migrate the billing module to the new API
+```
+
 It is fully self-contained — no companion skills required: the inventory doubles as the question list for design discussion, and its resolved/unresolved items flow into the plan as requirements and documented assumptions.
 
 ## Anatomy
@@ -68,6 +74,8 @@ skills/finding-unknowns/
     ├── pre-implementation.md         # Five discovery techniques
     ├── during-implementation.md      # Notes protocol, deviation rule, assumption log
     └── post-implementation.md        # Handoff pitch + sign-off quiz
+commands/
+└── unknowns.md                       # /unknowns — force-trigger (Claude Code)
 ```
 
 Metadata costs ~100 tokens at startup; the body loads only when the skill activates; references load only for the phase you're in.

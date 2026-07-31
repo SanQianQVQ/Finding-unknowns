@@ -4,7 +4,7 @@ description: Use when starting any non-trivial task — ambiguous requirements, 
 license: Apache-2.0
 metadata:
   author: SanQianQVQ
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Finding Unknowns
