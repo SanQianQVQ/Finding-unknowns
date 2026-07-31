@@ -1,10 +1,10 @@
 ---
 name: finding-unknowns
-description: Use when starting any non-trivial task — ambiguous requirements, unfamiliar domain or codebase, client-facing deliverables, or changes spanning multiple files — before writing plans or code. Also use during implementation when edge cases force deviation from the plan, and after implementation before handoff, sign-off, or merge. Especially when time pressure or an unreachable user tempts you to skip clarification and build on assumptions.
+description: Use whenever requirements are ambiguous, vague, or underspecified — no matter how small the task sounds ("make it look better", "clean this up", "nothing fancy") — and when starting any non-trivial task: unfamiliar domain or codebase, client-facing deliverables, or changes spanning multiple files. Run before writing plans or code; again during implementation when edge cases force deviation from the plan; and after implementation before handoff, sign-off, or merge. Especially when time pressure or an unreachable user tempts you to skip clarification and build on assumptions.
 license: Apache-2.0
 metadata:
   author: SanQianQVQ
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # Finding Unknowns
