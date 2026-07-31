@@ -1,0 +1,26 @@
+{
+  "name": "finding-unknowns",
+  "owner": {
+    "name": "SanQianQVQ",
+    "url": "https://github.com/SanQianQVQ"
+  },
+  "plugins": [
+    {
+      "name": "finding-unknowns",
+      "source": "./",
+      "description": "Surface and eliminate unknowns before, during, and after implementation — Unknowns Inventory first, conservative logged defaults under pressure, deviations transcribed into the handoff.",
+      "version": "1.1.0",
+      "author": {
+        "name": "SanQianQVQ"
+      },
+      "license": "Apache-2.0",
+      "keywords": [
+        "workflow",
+        "requirements",
+        "planning",
+        "code-review",
+        "unknowns"
+      ]
+    }
+  ]
+}
