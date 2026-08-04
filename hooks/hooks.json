@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); case \"$input\" in *\"git commit\"*) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"[finding-unknowns] Pre-commit gate: (1) if implementation-notes.md or an assumption log exists, transcribe its Decisions and Deviations verbatim into the PR description or commit body (needs-review items first); never stage the notes file, delete it after transcribing. (2) if any undisclosed judgment calls or plan deviations were made this session, surface them to the user before shipping.\"}}' ;; esac",
+            "timeout": 15,
+            "statusMessage": "finding-unknowns pre-commit gate"
+          }
+        ]
+      }
+    ]
+  }
+}

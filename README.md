@@ -63,7 +63,9 @@ The skill activates itself on any non-trivial task — ambiguous requirements, u
 /unknowns migrate the billing module to the new API
 ```
 
-**Optional: a guaranteed pre-commit gate (Claude Code hook)** — skill routing happens when a message arrives, so if the agent works autonomously all the way to `git commit` inside one long turn, no routing moment is left to re-activate the skill. To make the post-implementation gate unconditional, add this hook to your `~/.claude/settings.json` (merge into your existing `hooks` if you have one). It fires on any Bash command containing `git commit` and injects the handoff rules right before the commit:
+**The pre-commit gate (Claude Code hook)** — skill routing happens when a message arrives, so if the agent works autonomously all the way to `git commit` inside one long turn, no routing moment is left to re-activate the skill. The plugin therefore bundles a hook (`hooks/hooks.json`) that makes the post-implementation gate unconditional: it fires on any Bash command containing `git commit` and injects the handoff rules right before the commit.
+
+Plugin installs (`/plugin install ...`) get this automatically. If you installed the skill files only (skills.sh or manual copy), add the same hook to your `~/.claude/settings.json` yourself (merge into your existing `hooks` if you have one):
 
 ```json
 {
@@ -85,7 +87,7 @@ The skill activates itself on any non-trivial task — ambiguous requirements, u
 }
 ```
 
-It stays silent on every other command, and the substring match also catches compound commands like `cd app && git commit`. This is deliberately not shipped as a plugin hook — auto-injecting into every user's commits would be invasive; opt in if you want the hard guarantee.
+It stays silent on every other command, and the substring match also catches compound commands like `cd app && git commit`. Don't add the settings.json copy if you installed via the plugin — you'd get the reminder twice.
 
 It is fully self-contained — no companion skills required: the inventory doubles as the question list for design discussion, and its resolved/unresolved items flow into the plan as requirements and documented assumptions.
 
@@ -100,6 +102,8 @@ skills/finding-unknowns/
     └── post-implementation.md        # Handoff pitch + sign-off quiz
 commands/
 └── unknowns.md                       # /unknowns — force-trigger (Claude Code)
+hooks/
+└── hooks.json                        # Pre-commit gate (Claude Code plugin installs)
 ```
 
 Metadata costs ~100 tokens at startup; the body loads only when the skill activates; references load only for the phase you're in.
