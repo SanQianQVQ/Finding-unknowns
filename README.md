@@ -63,6 +63,30 @@ The skill activates itself on any non-trivial task — ambiguous requirements, u
 /unknowns migrate the billing module to the new API
 ```
 
+**Optional: a guaranteed pre-commit gate (Claude Code hook)** — skill routing happens when a message arrives, so if the agent works autonomously all the way to `git commit` inside one long turn, no routing moment is left to re-activate the skill. To make the post-implementation gate unconditional, add this hook to your `~/.claude/settings.json` (merge into your existing `hooks` if you have one). It fires on any Bash command containing `git commit` and injects the handoff rules right before the commit:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); case \"$input\" in *\"git commit\"*) echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"[finding-unknowns] Pre-commit gate: (1) if implementation-notes.md or an assumption log exists, transcribe its Decisions and Deviations verbatim into the PR description or commit body (needs-review items first); never stage the notes file, delete it after transcribing. (2) if any undisclosed judgment calls or plan deviations were made this session, surface them to the user before shipping.\"}}' ;; esac",
+            "timeout": 15,
+            "statusMessage": "finding-unknowns pre-commit gate"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+It stays silent on every other command, and the substring match also catches compound commands like `cd app && git commit`. This is deliberately not shipped as a plugin hook — auto-injecting into every user's commits would be invasive; opt in if you want the hard guarantee.
+
 It is fully self-contained — no companion skills required: the inventory doubles as the question list for design discussion, and its resolved/unresolved items flow into the plan as requirements and documented assumptions.
 
 ## Anatomy
