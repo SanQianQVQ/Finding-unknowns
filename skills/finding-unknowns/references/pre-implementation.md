@@ -6,9 +6,19 @@ Run these against the Unknowns Inventory before any plan or code. Each is a chea
 
 When entering an unfamiliar domain or codebase, survey it for the questions nobody thought to ask, and explain findings back in plain terms.
 
+The procedure:
+
+1. Name the domain you're entering and state what you don't know about it.
+2. Ask, in turn: What do people who do this professionally worry about that the request never mentions? What would make this cause an incident three months from now? Where can stored state silently diverge from the truth?
+3. Check the territory (codebase, dependencies, prior art) for evidence each worry applies here.
+4. Convert every hit into an inventory item routed to a resolution. Domain-specific traps only — generic software advice is not a blind spot.
+
+**Escalation — the multi-lens pass.** For high-stakes work (a client-facing deliverable, or an unfamiliar domain with hard-to-reverse effects), run step 2 as separate passes through distinct lenses instead of one general sweep: a veteran practitioner of this domain, an incident pre-mortem, a data-integrity reviewer. Merge the union into the inventory. If your environment can run sub-agents, give each lens its own agent with fresh context — anchoring to one framing is exactly what hides unknown unknowns; if not, work the lenses one at a time yourself. Lens diversity beats agent count: two or three genuinely different lenses outperform five copies of the same reviewer. Routine tasks don't need this — one pass through the procedure above is enough.
+
 Example prompts:
 - "I'm adding a new auth provider but don't know this codebase. Do a blind spot pass: what unknown unknowns should I be aware of?"
 - "Before I build this export feature: what do people who do this professionally worry about that I haven't mentioned?"
+- "Pre-mortem lens: this feature caused a production incident three months from now — what were the most likely causes?"
 
 Output: new items for the inventory, each routed to a resolution.
 

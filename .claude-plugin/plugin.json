@@ -1,6 +1,6 @@
 {
   "name": "finding-unknowns",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Surface and eliminate unknowns before, during, and after implementation — Unknowns Inventory first, conservative logged defaults under pressure, deviations transcribed into the handoff, and a pre-commit gate hook.",
   "author": {
     "name": "SanQianQVQ"

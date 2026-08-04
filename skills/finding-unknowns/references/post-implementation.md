@@ -21,7 +21,13 @@ Example prompt:
 
 Why it works: reviewers start from the same unknowns you did. Showing you already surfaced and resolved them is what makes approval fast.
 
-## 2. Quiz — for long sessions
+## 2. Completeness Critic — before the pitch ships
+
+The pitch's author is the worst person to spot what it omits. Before the requester sees it, have a fresh reader attack it with one question: what is this handoff NOT saying? Undisclosed judgment calls, deviations worded more softly than they deserve, assumptions listed nowhere, a `needs review` item that reads like a footnote.
+
+If your environment can run a sub-agent, give it the pitch and the diff with clean context and that one question. If not, re-read the pitch cold yourself against implementation-notes.md before deleting it. Whatever surfaces goes into the pitch first — the requester never sees the un-critiqued version.
+
+## 3. Quiz — for long sessions
 
 After a long working session, verify the human actually understands what changed before they sign off or merge. Generate a report with a quiz at the bottom; a perfect score is the merge gate.
 
